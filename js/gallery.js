@@ -103,14 +103,12 @@ refs.galleryList.innerHTML = galleryTemplate;
 
 const onImagesClick = (event) => {
   event.preventDefault();
-
   if (event.target.nodeName === "UL") {
     return;
   }
 
   const img = event.target.closest(".gallery-image");
   const currentDataset = img.dataset.source;
-
   const instance = basicLightbox.create(`
     <div>
     <img src=${currentDataset} alt="">
