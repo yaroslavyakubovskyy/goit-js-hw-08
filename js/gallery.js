@@ -81,22 +81,22 @@ const refs = {
   galleryList: document.querySelector(".gallery"),
 };
 
-const createGalleryTemplate = (cardExm) => {
+const createGalleryTemplate = ({ preview, original, description }) => {
   return `
   <li class="gallery-item">
-  <a class="gallery-link" href="${cardExm.original}">
+  <a class="gallery-link" href="${original}">
     <img
       class="gallery-image"
-      src="${cardExm.preview}"
-      data-source="${cardExm.original}"
-      alt="${cardExm.description}"; 
+      src="${preview}"
+      data-source="${original}"
+      alt="${description}"; 
     />
   </a>
   </li>`;
 };
 
 const galleryTemplate = images
-  .map((photo) => createGalleryTemplate(photo))
+  .map((imageExm) => createGalleryTemplate(imageExm))
   .join("");
 
 refs.galleryList.innerHTML = galleryTemplate;
@@ -108,8 +108,8 @@ const onImagesClick = (event) => {
     return;
   }
 
-  const image = event.target.closest(".gallery-image");
-  const currentDataset = image.dataset.source;
+  const img = event.target.closest(".gallery-image");
+  const currentDataset = img.dataset.source;
 
   const instance = basicLightbox.create(`
     <div>
